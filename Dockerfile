@@ -74,8 +74,10 @@ COPY ./nginx.conf.template /nginx.conf.template
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 USER root
 RUN rm -rf /var/www/*
+RUN git clone -b 2022.12 --depth 1 https://github.com/Anankke/SSPanel-Uim.git panel
+
 ADD ./panel /var/www
-# COPY ./composer.json /var/www
+
 WORKDIR /var/www
 
 RUN composer install

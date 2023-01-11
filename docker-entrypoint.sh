@@ -1,5 +1,8 @@
 #! /bin/bash -eu
 
+cp config/appprofile.example.php config/appprofile.php
+mv db/migrations/20000101000000_init_database.php.new db/migrations/20000101000000_init_database.php
+
 if [ "$CONFIG_FILE" != "" ]; then
   echo "[INFO] Config Panel from CONFIG_BASE64 env"
   echo $CONFIG_FILE | base64 -d > config/.config.php
@@ -8,7 +11,7 @@ fi
 if [ "$DATABASE" = "yes" ]; then
  vendor/bin/phinx migrate && \
  php xcat Tool importAllSettings
- php xcat User createAdmin <<EOF
+ php xcat Tool createAdmin <<EOF
  $ADMINEMAIL
  $ADMINPASSWD
  Y
