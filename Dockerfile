@@ -74,7 +74,8 @@ COPY ./nginx.conf.template /nginx.conf.template
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 USER root
 RUN rm -rf /var/www/*
-ADD ./panel /var/www
+WORKDIR ./panel
+ADD * /var/www/
 
 WORKDIR /var/www
 
