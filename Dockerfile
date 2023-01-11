@@ -67,18 +67,16 @@ RUN apk add --no-cache --update \
 RUN curl http://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
 # Alias defaults to empty, example usage:
 # SERVER_ALIAS='www.example.com'
-RUN git clone -b 2022.12 --depth 1 https://github.com/Anankke/SSPanel-Uim.git panel
+
 COPY ./supervisord.conf /supervisord.conf
 COPY ./php-fpm-www.conf /etc/php8/php-fpm.d/www.conf
 COPY ./nginx.conf.template /nginx.conf.template
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 USER root
 RUN rm -rf /var/www/*
-WORKDIR ./panel
-ADD * /var/www/
 
 WORKDIR /var/www
-
+RUN git clone -b 2022.12 --depth 1 https://github.com/Anankke/SSPanel-Uim.git .
 RUN composer install
 RUN chmod 755 -R *
 RUN chown www:www -R *
