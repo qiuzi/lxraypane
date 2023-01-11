@@ -80,5 +80,7 @@ RUN git clone -b 2022.12 https://github.com/Anankke/SSPanel-Uim.git .
 RUN composer install
 RUN chmod 755 -R *
 RUN chown www:www -R *
+RUN cp config/appprofile.example.php config/appprofile.php \
+    mv db/migrations/20000101000000_init_database.php.new db/migrations/20000101000000_init_database.php
 
 CMD ["/docker-entrypoint.sh"]
