@@ -76,7 +76,7 @@ USER root
 RUN rm -rf /var/www/*
 
 WORKDIR /var/www
-RUN git clone -b 2022.12 --depth 1 https://github.com/Anankke/SSPanel-Uim.git .
+RUN git clone -b 2022.12 https://github.com/Anankke/SSPanel-Uim.git .
 RUN composer install
 RUN chmod 755 -R *
 RUN chown www:www -R *
