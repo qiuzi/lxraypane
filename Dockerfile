@@ -73,7 +73,6 @@ COPY ./php-fpm-www.conf /etc/php8/php-fpm.d/www.conf
 COPY ./nginx.conf.template /nginx.conf.template
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 COPY ./info.php /info.php
-COPY /etc/php8/php.ini /php.ini
 USER root
 RUN rm -rf /var/www/*
 RUN chmod 755 /docker-entrypoint.sh
