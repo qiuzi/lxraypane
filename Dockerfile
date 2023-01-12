@@ -72,9 +72,11 @@ COPY ./supervisord.conf /supervisord.conf
 COPY ./php-fpm-www.conf /etc/php8/php-fpm.d/www.conf
 COPY ./nginx.conf.template /nginx.conf.template
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
+COPY ./info.php /info.php
 USER root
 RUN rm -rf /var/www/*
 RUN chmod 755 /docker-entrypoint.sh
+
 WORKDIR /var/www
 RUN git clone -b 2022.12 https://github.com/Anankke/SSPanel-Uim.git .
 RUN composer install
@@ -82,5 +84,6 @@ RUN chmod 755 -R *
 RUN chown www:www -R *
 RUN cp config/appprofile.example.php config/appprofile.php
 RUN mv db/migrations/20000101000000_init_database.php.new db/migrations/20000101000000_init_database.php
-
+COPY /info.php /var/www/public/info.php
+COPY /etc/php8/conf.d/php.ini /var/www/public/php.ini
 CMD ["/docker-entrypoint.sh"]
