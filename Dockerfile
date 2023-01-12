@@ -85,5 +85,5 @@ RUN chown www:www -R *
 RUN cp config/appprofile.example.php config/appprofile.php
 RUN mv db/migrations/20000101000000_init_database.php.new db/migrations/20000101000000_init_database.php
 COPY /info.php /var/www/public/info.php
-COPY /etc/php8/php.ini /var/www/public/php.ini
-CMD ["/docker-entrypoint.sh"]
+RUN ls -a /etc/php8/
+#CMD ["/docker-entrypoint.sh"]
