@@ -74,7 +74,7 @@ COPY ./nginx.conf.template /nginx.conf.template
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
 USER root
 RUN rm -rf /var/www/*
-
+RUN chmod 755 /docker-entrypoint.sh
 WORKDIR /var/www
 RUN git clone -b 2022.12 https://github.com/Anankke/SSPanel-Uim.git .
 RUN composer install
