@@ -72,7 +72,6 @@ COPY ./supervisord.conf /supervisord.conf
 COPY ./php-fpm-www.conf /etc/php8/php-fpm.d/www.conf
 COPY ./nginx.conf.template /nginx.conf.template
 COPY ./docker-entrypoint.sh /docker-entrypoint.sh
-COPY ./info.php /info.php
 USER root
 RUN rm -rf /var/www/*
 RUN chmod 755 /docker-entrypoint.sh
@@ -84,6 +83,5 @@ RUN chmod 755 -R *
 RUN chown www:www -R *
 RUN cp config/appprofile.example.php config/appprofile.php
 RUN mv db/migrations/20000101000000_init_database.php.new db/migrations/20000101000000_init_database.php
-COPY /info.php /var/www/public/info.php
-RUN cat /etc/php8/php.ini>/var/www/public/php.txt
+
 CMD ["/docker-entrypoint.sh"]
