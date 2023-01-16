@@ -77,7 +77,7 @@ RUN rm -rf /var/www/*
 RUN chmod 755 /docker-entrypoint.sh
 
 WORKDIR /var/www
-RUN git clone https://github.com/Anankke/SSPanel-Uim.git .
+RUN git clone https://github.com/qiuzi/SSPanel-Uim.git .
 RUN composer install
 RUN chmod 755 -R *
 RUN chown www:www -R *
